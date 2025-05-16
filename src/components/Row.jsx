@@ -20,8 +20,7 @@ const Row = () => {
     console.table(movies)
     return (
         <div className='overflow-x-auto'>
-        <div className="flex flex-nowrap h-80 gap-2">
-            {movies.map((movie) => <Movie key={movie.id} id={movie.id} type={movie.media_type}/>)}
+        <div className="flex flex-nowrap h-auto gap-2">
             {movies.map((movie) => <Movie key={movie.id} id={movie.id} type={movie.media_type}/>)}
         </div>
         </div>

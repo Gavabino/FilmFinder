@@ -29,13 +29,5 @@ export default [
         { allowConstantExport: true },
       ],
     },
-    overrides: [
-      {
-        files: ['*.config.js'], // or ['tailwind.config.js']
-        env: {
-          node: true,
-        },
-      },
-    ],
   },
 ]

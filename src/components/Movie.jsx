@@ -18,7 +18,7 @@ const Movie = ({ id, type }) => {
 
     const bgImageUrl = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
     return (
-        <div className={`h- w-44 border-2 border-gray-300 min-w-72 bg-cover bg-center`}
+        <div className={`h-48 w-32 border-2 border-gray-300 min-w-32 bg-cover bg-center`}
              style={{ backgroundImage: `url(${bgImageUrl})` }}>
             {/*<img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} className="object-contain w-full h-full"/>*/}
         </div>
