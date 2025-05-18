@@ -3,13 +3,14 @@ import axios from '../utils/axios.js'
 
 const Poster = ({ id, type }) => {
     const [movie, setMovie] = useState("")
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`/${type}/${id}`);
                 setMovie(response.data);
             } catch (error) {
-                console.error("Error fetching movie data:", error);
+                console.error("Error fetching data:", error);
             }
         };
 

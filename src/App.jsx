@@ -1,10 +1,10 @@
-import Row from "./components/Row.jsx";
+import RowContainer from "./components/RowContainer.jsx";
 
 function App() {
 
   return (
       <>
-      <Row title={"Trending"} endpoints={["/trending/all/week"]}/>
+        <RowContainer />
       </>
   )
 }

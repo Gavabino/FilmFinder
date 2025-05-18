@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import Poster from "./Poster.jsx";
 import {useDraggable} from "react-use-draggable-scroll";
 import fetchData from "../utils/fetchData.js";
+import {v4 as uuidv4} from "uuid";
 
 const Row = ({ title, endpoints }) => {
     const [data, setData] = useState([])
@@ -15,13 +16,13 @@ const Row = ({ title, endpoints }) => {
         }
         getData()
     }, [endpoints]);
-    console.table(data)
+
     return (
         <div>
             <p>{title}</p>
         <div className='overflow-x-auto'  { ...events } ref={ref}>
         <div className="flex flex-nowrap h-auto gap-2">
-            {data.map((item) => <Poster key={item.id} id={item.id} type={item.media_type}/>)}
+            {data.map((item) => <Poster key={uuidv4()} id={item.id} type={item.original_title ? "movie" : "tv"}/>)}
         </div>
         </div>
         </div>
