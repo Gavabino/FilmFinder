@@ -1,27 +1,28 @@
-import {useEffect, useState} from "react";
-import axios from "../utils/axios.js";
-import Movie from "./Movie.jsx";
+import {useEffect, useRef, useState} from "react";
+import Poster from "./Poster.jsx";
+import {useDraggable} from "react-use-draggable-scroll";
+import fetchData from "../utils/fetchData.js";
 
-const Row = () => {
-    const [movies, setMovies] = useState([])
+const Row = ({ title, endpoints }) => {
+    const [data, setData] = useState([])
+    const ref = useRef()
+    const { events } = useDraggable(ref)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("/trending/all/week");
-                setMovies(response.data.results);
-            } catch (error) {
-                console.error("Error fetching movie data:", error);
-            }
-        };
-
-        fetchData()
-    }, []);
-    console.table(movies)
+        const getData = async () => {
+            const response = await fetchData(endpoints);
+            setData(response);
+        }
+        getData()
+    }, [endpoints]);
+    console.table(data)
     return (
-        <div className='overflow-x-auto'>
+        <div>
+            <p>{title}</p>
+        <div className='overflow-x-auto'  { ...events } ref={ref}>
         <div className="flex flex-nowrap h-auto gap-2">
-            {movies.map((movie) => <Movie key={movie.id} id={movie.id} type={movie.media_type}/>)}
+            {data.map((item) => <Poster key={item.id} id={item.id} type={item.media_type}/>)}
+        </div>
         </div>
         </div>
     )

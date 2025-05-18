@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from '../utils/axios.js'
 
-const Movie = ({ id, type }) => {
+const Poster = ({ id, type }) => {
     const [movie, setMovie] = useState("")
     useEffect(() => {
         const fetchData = async () => {
@@ -25,4 +25,4 @@ const Movie = ({ id, type }) => {
     )
 }
 
-export default Movie
+export default Poster
