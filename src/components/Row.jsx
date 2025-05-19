@@ -18,10 +18,10 @@ const Row = ({ title, endpoints }) => {
     }, [endpoints]);
 
     return (
-        <div>
-            <p>{title}</p>
+        <div className="m-2">
+            <p className={"text-white text-4xl p-1"}>{title}</p>
         <div className='overflow-x-auto'  { ...events } ref={ref}>
-        <div className="flex flex-nowrap h-auto gap-2">
+        <div className="flex flex-nowrap h-auto gap-3 p-3">
             {data.map((item) => <Poster key={uuidv4()} id={item.id} type={item.original_title ? "movie" : "tv"}/>)}
         </div>
         </div>

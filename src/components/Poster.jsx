@@ -15,15 +15,11 @@ const Poster = ({ id, type }) => {
         };
 
         fetchData();
-    }, []);
+    }, [id, type]);
 
     const bgImageUrl = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
     return (
-        <div className={`h-48 w-32 border-2 border-gray-300 min-w-32 bg-cover bg-center`}
-             style={{ backgroundImage: `url(${bgImageUrl})` }}>
-            {/*<img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title} className="object-contain w-full h-full"/>*/}
-        </div>
+        <img src={bgImageUrl} className="object-contain max-h-48 w-full hover:scale-110 transition duration-300"  alt={"Movie"}/>
     )
 }
-
 export default Poster
