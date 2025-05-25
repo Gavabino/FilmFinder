@@ -21,9 +21,9 @@ const Preview = ( {item}) => {
     console.log(bgImageUrl)
     return (
         <div style={{backgroundImage: `url(${bgImageUrl})`}} className="bg-cover bg-center w-full h-[50vh] m-2 flex flex-row justify-start">
-            <div className="m-4 w-1/4 flex flex-col">
-                <p>{item.original_title ? item.original_title : item.original_name}</p>
-                <p>{item.overview}</p>
+            <div className="m-4 min-w-[25%] max-w-[35%] flex flex-col">
+                <p className="text-white text-4xl p-2 bg-gray-600 bg-opacity-25 rounded-t-md">{item.original_title ? item.original_title : item.original_name}</p>
+                <p className="text-white text-xl p-2 bg-gray-600 bg-opacity-25 rounded-b-md">{item.overview}</p>
             </div>
         </div>
     )

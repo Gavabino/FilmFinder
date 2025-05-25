@@ -21,7 +21,7 @@ const Row = ({ title, endpoints }) => {
     }, [endpoints]);
 
     const handleClick = (movie) => {
-        if (active) {
+        if (active && movie.id === previewInfo.id) {
             setActive(false);
         } else {
             setActive(true);
