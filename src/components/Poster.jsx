@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from '../utils/axios.js'
 
-const Poster = ({ id, type }) => {
+const Poster = ({ id, type, handleClick }) => {
     const [movie, setMovie] = useState("")
 
     useEffect(() => {
@@ -19,7 +19,12 @@ const Poster = ({ id, type }) => {
 
     const bgImageUrl = `https://image.tmdb.org/t/p/original/${movie.poster_path}`
     return (
-        <img src={bgImageUrl} className="object-contain max-h-48 w-full hover:scale-110 transition duration-300"  alt={"Movie"}/>
+        <img src={bgImageUrl}
+             className="object-contain max-h-48 w-full hover:scale-110 transition duration-300"
+             draggable={"false"}
+             alt="Movie"
+             onClick={handleClick}
+        />
     )
 }
 export default Poster
