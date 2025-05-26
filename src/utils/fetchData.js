@@ -14,6 +14,7 @@ const fetchData = async (endpoints) => {
     if (endpoints.length > 1) {
         data = shuffleArray(data)
     }
+    data = removeDuplicates(data)
     return data
 };
 
@@ -23,6 +24,19 @@ const shuffleArray = (array) => {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+const removeDuplicates = (array) => {
+    const seen = new Set();
+
+    return array.filter((item) => {
+        if (!seen.has(item.id)) {
+            seen.add(item.id);
+            return true;
+        }
+        console.log("Item Removed")
+        return false;
+    })
 }
 
 export default fetchData;
