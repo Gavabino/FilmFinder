@@ -1,10 +1,12 @@
 import RowContainer from "./components/RowContainer.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
 
   return (
       <>
-        <RowContainer />
+          <Navbar />
+          <RowContainer />
       </>
   )
 }
