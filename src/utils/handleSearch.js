@@ -3,7 +3,7 @@ import axios from "../utils/axios.js";
 const handleSearch = async (search, year) => {
     if (!search) {
         console.log("No search")
-        return ["No Search"];
+        return [];
     }
 
     try {
@@ -16,7 +16,15 @@ const handleSearch = async (search, year) => {
 
         console.log("Full API response:", response.data)
 
-        let results = response.data.results || "No results found";
+        let results = response.data.results || [];
+
+        if (year) {
+            results = results.filter((item) => {
+                const date = item.release_date || item.first_air_date || "";
+                return date.startsWith(year);
+            });
+        }
+
         return results
     } catch (error) {
         console.error("Error fetching data:", error);
