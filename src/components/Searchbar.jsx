@@ -7,13 +7,19 @@ const Searchbar = () => {
     const [results, setResults] = useState([])
 
     useEffect(() => {
-         const fetchData = async () => {
-            const response = await handleSearch(search, year);
-            setResults(response);
-        }
-        fetchData()
-        console.log(results)
-    }, [results, search, year])
+        console.log("Current search input:", search);
+        const delayDebounce = setTimeout(() => {
+            const fetchData = async () => {
+                const response = await handleSearch(search, year);
+                console.log(response)
+                setResults(response);
+            };
+            fetchData();
+
+        }, 500);
+
+        return () => clearTimeout(delayDebounce);
+    }, [search, year]);
 
     return (
         <div className="text-xl m-2 w-1/5">
