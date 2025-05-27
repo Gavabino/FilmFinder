@@ -1,8 +1,19 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import handleSearch from "../utils/handleSearch.js";
 
 const Searchbar = () => {
     const [search, setSearch] = useState("")
     const [year, setYear] = useState("")
+    const [results, setResults] = useState([])
+
+    useEffect(() => {
+         const fetchData = async () => {
+            const response = await handleSearch(search, year);
+            setResults(response);
+        }
+        fetchData()
+        console.log(results)
+    }, [results, search, year])
 
     return (
         <div className="text-xl m-2 w-1/5">
