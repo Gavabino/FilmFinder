@@ -7,7 +7,7 @@ const handleSearch = async (search, year) => {
     }
 
     try {
-        const response = await axios.get("https://api.themoviedb.org/3/search/multi", {
+        const response = await axios.get("/search/multi", {
             params: {
                 query: search,
                 language: "en-US",
@@ -24,6 +24,36 @@ const handleSearch = async (search, year) => {
                 return date.startsWith(year);
             });
         }
+
+        for (let i = 1; i <= response.data.total_pages; i++) {
+            const response = await axios.get("/search/multi", {
+                params: {
+                    query: search,
+                    language: "en-US",
+                    page: i,
+                },
+            });
+            results = [...results, ...response.data.results];
+        }
+
+        results = results.filter((item) => item.poster_path)
+        results = results.filter((item) => item.original_language === "en")
+        results.sort((a, b) => b.popularity - a.popularity)
+
+        const removeDuplicates = (array) => {
+            const seen = new Set();
+
+            return array.filter((item) => {
+                if (!seen.has(item.id)) {
+                    seen.add(item.id);
+                    return true;
+                }
+                console.log("Item Removed")
+                return false;
+            })
+        }
+
+        results = removeDuplicates(results)
 
         return results
     } catch (error) {
