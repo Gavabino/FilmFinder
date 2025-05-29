@@ -18,13 +18,6 @@ const handleSearch = async (search, year) => {
 
         let results = response.data.results || [];
 
-        if (year) {
-            results = results.filter((item) => {
-                const date = item.release_date || item.first_air_date || "";
-                return date.startsWith(year);
-            });
-        }
-
         for (let i = 1; i <= response.data.total_pages; i++) {
             const response = await axios.get("/search/multi", {
                 params: {
@@ -48,9 +41,15 @@ const handleSearch = async (search, year) => {
                     seen.add(item.id);
                     return true;
                 }
-                console.log("Item Removed")
                 return false;
             })
+        }
+
+        if (year) {
+            results = results.filter((item) => {
+                const date = item.release_date || item.first_air_date || "";
+                return date.startsWith(year);
+            });
         }
 
         results = removeDuplicates(results)

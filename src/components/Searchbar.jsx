@@ -31,9 +31,6 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
             setSearchResults(false)
         }
     }
-    const handleChangeYear = (e) => {
-        setYear(e.target.value)
-    }
 
     return (
         <div className="text-xl m-2 w-1/5">
@@ -47,7 +44,7 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
                    placeholder={"Year"}
                    className="p-1 pl-2 rounded-xl bg-neutral-600 text-neutral-400 w-1/4 m-1 focus:outline-none focus:outline-red-600 focus:ring-0"
                    value={year}
-                   onChange={(e) => handleChangeYear(e)}
+                   onChange={(e) => setYear(e.target.value)}
             />
 
         </div>
