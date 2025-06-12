@@ -4,7 +4,6 @@ import handleSearch from "../utils/handleSearch.js";
 const Searchbar = ({ setSearchResults, setSearchData }) => {
     const [search, setSearch] = useState("")
     const [year, setYear] = useState("")
-    const [results, setResults] = useState([])
 
     useEffect(() => {
         console.log("Current search input:", search);
@@ -12,7 +11,6 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
             const fetchData = async () => {
                 const response = await handleSearch(search, year);
                 console.log(response)
-                setResults(response);
                 if (response.length > 0) {
                     console.log("Searched")
                     setSearchResults(true)
