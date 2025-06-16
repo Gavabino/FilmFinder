@@ -9,6 +9,10 @@
         @apply bg-neutral-900;
         font-family: 'Fira Sans', sans-serif;
         overflow-x: hidden;
+
+    }
+    body::-webkit-scrollbar {
+        display: none;
     }
 }
 

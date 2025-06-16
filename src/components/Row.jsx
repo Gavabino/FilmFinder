@@ -29,6 +29,11 @@ const Row = ({ title, endpoints }) => {
         }
     };
 
+    const handleClose = () => {
+        setActive(false);
+        setPreviewInfo({})
+    }
+
     return (
         <div className="m-2">
             <p className={"text-white text-4xl p-1"}>{title}</p>
@@ -43,7 +48,7 @@ const Row = ({ title, endpoints }) => {
             />)}
         </div>
         </div>
-            {active && <Preview item={previewInfo}/>}
+            {active && <Preview item={previewInfo} handleClose={handleClose} />}
         </div>
     )
 }

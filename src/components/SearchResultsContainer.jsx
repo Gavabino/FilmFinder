@@ -1,8 +1,11 @@
 import Poster from "./Poster.jsx";
 import {useState} from "react";
+import Preview from "./Preview.jsx";
 
 const SearchResultsContainer = ({ results }) => {
     const [currentPage, setCurrentPage] = useState(0);
+    const [active, setActive] = useState(false)
+    const [previewInfo, setPreviewInfo] = useState({})
 
     let newResults = [];
     if (results.length > 100) {
@@ -26,6 +29,20 @@ const SearchResultsContainer = ({ results }) => {
         }
     }
 
+    const handleClick = (movie) => {
+        if (active && movie.id === previewInfo.id) {
+            setActive(false);
+        } else {
+            setActive(true);
+            setPreviewInfo(movie);
+        }
+    }
+
+    const handleClose = () => {
+        setActive(false);
+        setPreviewInfo({})
+    }
+
     return (
         <div className="flex flex-col justify-center">
             <div className="grid grid-cols-10 gap-x-2 gap-y-2 m-2 justify-items-center">
@@ -35,6 +52,7 @@ const SearchResultsContainer = ({ results }) => {
                     id={item.id}
                     type={item.original_title ? "movie" : "tv"}
                     item={item}
+                    handleClick={() => handleClick(item)}
                 />
                 )}
             </div>
@@ -49,6 +67,11 @@ const SearchResultsContainer = ({ results }) => {
                     <p className="text-red-600">&gt;</p>
                 </div>}
             </div>}
+            <div>
+                {active && <div className="absolute top-10 bg-white bg-opacity-50 h-screen flex items-center">
+                    <Preview item={previewInfo} handleClose={handleClose} />
+                </div>}
+            </div>
         </div>
     )
 }
