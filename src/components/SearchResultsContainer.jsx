@@ -45,6 +45,7 @@ const SearchResultsContainer = ({ results }) => {
 
     return (
         <div className="flex flex-col justify-center">
+            <div>Results for </div>
             <div className="grid grid-cols-10 gap-x-2 gap-y-2 m-2 justify-items-center">
                 {newResults[currentPage].map((item) =>
                     <Poster
@@ -63,7 +64,7 @@ const SearchResultsContainer = ({ results }) => {
                 <div className="w-8 h-8 bg-neutral-800 flex justify-center items-center">
                     <p className="text-red-600">{currentPage + 1}</p>
                 </div>
-                {currentPage < results.length && <div className="w-8 h-8 bg-neutral-800 flex justify-center items-center rounded-r-md" onClick={() => handleIncrease()}>
+                {currentPage < newResults.length - 1 && <div className="w-8 h-8 bg-neutral-800 flex justify-center items-center rounded-r-md" onClick={() => handleIncrease()}>
                     <p className="text-red-600">&gt;</p>
                 </div>}
             </div>}
