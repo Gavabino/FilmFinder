@@ -1,14 +1,17 @@
 import {useEffect, useState} from "react";
 import handleSearch from "../utils/handleSearch.js";
+import {MoonLoader} from "react-spinners";
 
 const Searchbar = ({ setSearchResults, setSearchData }) => {
     const [search, setSearch] = useState("")
     const [year, setYear] = useState("")
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         console.log("Current search input:", search);
         const delayDebounce = setTimeout(() => {
             const fetchData = async () => {
+                setLoading(true);
                 const response = await handleSearch(search, year);
                 console.log(response)
                 if (response.length > 0) {
@@ -17,7 +20,7 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
                 }
                 setSearchData(response)
             };
-            fetchData()
+            fetchData().then(() => setLoading(false))
         }, 500);
 
         return () => clearTimeout(delayDebounce);
@@ -31,7 +34,9 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
     }
 
     return (
-        <div className="text-xl m-2 w-1/5">
+        <div className="w-1/4 flex flex-row justify-around items-center">
+            <MoonLoader size={20} color={"#dc2626"} loading={loading} />
+        <div className="text-xl m-2 w-4/5">
             <input type="text"
                    placeholder={"Search"}
                    className="p-1 pl-2 rounded-xl bg-neutral-600 text-neutral-400 w-3/5 m-1 focus:outline-none focus:outline-red-600 focus:ring-0"
@@ -44,7 +49,7 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
                    value={year}
                    onChange={(e) => setYear(e.target.value)}
             />
-
+        </div>
         </div>
     )
 }
