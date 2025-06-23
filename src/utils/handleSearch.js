@@ -30,6 +30,7 @@ const handleSearch = async (search, year) => {
         }
 
         results = results.filter((item) => item.poster_path)
+        results = results.filter((item) => item.backdrop_path)
         results = results.filter((item) => item.original_language === "en")
         results.sort((a, b) => b.popularity - a.popularity)
 
