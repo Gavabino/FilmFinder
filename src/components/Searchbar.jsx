@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import handleSearch from "../utils/handleSearch.js";
 import {MoonLoader} from "react-spinners";
 
-const Searchbar = ({ setSearchResults, setSearchData }) => {
+const Searchbar = ({ setSearchResults, setSearchData, setSearchKeywords }) => {
     const [search, setSearch] = useState("")
     const [year, setYear] = useState("")
     const [loading, setLoading] = useState(false)
@@ -19,6 +19,7 @@ const Searchbar = ({ setSearchResults, setSearchData }) => {
                     setSearchResults(true)
                 }
                 setSearchData(response)
+                setSearchKeywords(search)
             };
             fetchData().then(() => setLoading(false))
         }, 500);

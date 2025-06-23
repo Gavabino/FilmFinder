@@ -6,11 +6,12 @@ import SearchResultsContainer from "./components/SearchResultsContainer.jsx";
 function App() {
     const [searchResults, setSearchResults] = useState(false)
     const [search, setSearch] = useState([])
+    const [searchKeywords, setSearchKeywords] = useState("")
 
   return (
       <>
-          <Navbar setSearchResults={setSearchResults} setSearch={setSearch}/>
-          {searchResults ? <SearchResultsContainer results={search}/> : <RowContainer />}
+          <Navbar setSearchResults={setSearchResults} setSearch={setSearch} setSearchKeywords={setSearchKeywords} />
+          {searchResults ? <SearchResultsContainer results={search} searchKeywords={searchKeywords}/> : <RowContainer />}
       </>
   )
 }

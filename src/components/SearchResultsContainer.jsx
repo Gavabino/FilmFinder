@@ -2,7 +2,7 @@ import Poster from "./Poster.jsx";
 import {useState} from "react";
 import SearchPreview from "./SearchPreview.jsx";
 
-const SearchResultsContainer = ({ results }) => {
+const SearchResultsContainer = ({ results, searchKeywords }) => {
     const [currentPage, setCurrentPage] = useState(0);
     const [active, setActive] = useState(false)
     const [previewInfo, setPreviewInfo] = useState({})
@@ -45,7 +45,7 @@ const SearchResultsContainer = ({ results }) => {
 
     return (
         <div className="flex flex-col justify-center">
-            <div>Results for </div>
+            <div className="text-white text-2xl p-2 m-1">Results For "{searchKeywords}"</div>
             <div className="grid grid-cols-10 gap-x-2 gap-y-2 m-2 justify-items-center">
                 {newResults[currentPage].map((item) =>
                     <Poster
