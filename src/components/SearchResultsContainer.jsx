@@ -1,6 +1,6 @@
 import Poster from "./Poster.jsx";
 import {useState} from "react";
-import Preview from "./Preview.jsx";
+import SearchPreview from "./SearchPreview.jsx";
 
 const SearchResultsContainer = ({ results }) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -69,8 +69,8 @@ const SearchResultsContainer = ({ results }) => {
                 </div>}
             </div>}
             <div>
-                {active && <div className="absolute top-10 bg-white bg-opacity-50 h-screen flex items-center">
-                    <Preview item={previewInfo} handleClose={handleClose} />
+                {active && <div className="absolute top-0 mt-16 h-full">
+                    <SearchPreview item={previewInfo} handleClose={handleClose} />
                 </div>}
             </div>
         </div>
