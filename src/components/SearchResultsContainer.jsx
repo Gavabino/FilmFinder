@@ -1,6 +1,7 @@
 import Poster from "./Poster.jsx";
 import {useState} from "react";
 import SearchPreview from "./SearchPreview.jsx";
+import PageNavigator from "./PageNavigator.jsx";
 
 const SearchResultsContainer = ({ results, searchKeywords }) => {
     const [currentPage, setCurrentPage] = useState(0);
@@ -15,18 +16,6 @@ const SearchResultsContainer = ({ results, searchKeywords }) => {
         console.log(newResults)
     } else {
         newResults.push(results)
-    }
-
-    const handleDecrease = () => {
-        if (currentPage > 0) {
-            setCurrentPage((currentPage - 1));
-        }
-    }
-
-    const handleIncrease = () => {
-        if (currentPage < results.length) {
-            setCurrentPage((currentPage + 1));
-        }
     }
 
     const handleClick = (movie) => {
@@ -57,17 +46,11 @@ const SearchResultsContainer = ({ results, searchKeywords }) => {
                 />
                 )}
             </div>
-            {newResults.length > 1 && <div className="flex justify-center">
-                {currentPage > 0 && <div className="w-8 h-8 bg-neutral-800 flex justify-center items-center rounded-l-md" onClick={() => handleDecrease()}>
-                    <p className="text-red-600">&lt;</p>
-                </div>}
-                <div className="w-8 h-8 bg-neutral-800 flex justify-center items-center">
-                    <p className="text-red-600">{currentPage + 1}</p>
-                </div>
-                {currentPage < newResults.length - 1 && <div className="w-8 h-8 bg-neutral-800 flex justify-center items-center rounded-r-md" onClick={() => handleIncrease()}>
-                    <p className="text-red-600">&gt;</p>
-                </div>}
-            </div>}
+            {newResults.length > 1 && <PageNavigator currentPage={currentPage}
+                                                     setCurrentPage={setCurrentPage}
+                                                     newResults={newResults}
+
+            />}
             <div>
                 {active && <div className="absolute top-0 mt-16 h-full">
                     <SearchPreview item={previewInfo} handleClose={handleClose} />

@@ -1,38 +1,18 @@
 import {useEffect, useState} from "react";
-import axios from "../utils/axios.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faX} from "@fortawesome/free-solid-svg-icons";
+import {fetchData, getLink} from "../utils/handlePreview.js";
 
 const SearchPreview = ({item, handleClose}) => {
     const [movie, setMovie] = useState("")
     const [link, setLink] = useState("")
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`/${item.original_title ? "movie" : "tv"}/${item.id}`);
-                setMovie(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
-
-        fetchData();
-
-        const getLink = async () => {
-            const response = await axios.get(`https://api.themoviedb.org/3/${item.media_type}/${item.id}`)
-            const imdbId = response.data.imdb_id;
-            if (imdbId) {
-                setLink(`https://www.imdb.com/title/${imdbId}`);
-            }
-        }
-
-        getLink();
-
+        fetchData(item, setMovie);
+        getLink(item, setLink);
     }, [item]);
 
-    console.log(link);
     const bgImageUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-    console.log(bgImageUrl)
     return (
         <div style={{backgroundImage: `url(${bgImageUrl})`}}
              className="bg-cover bg-center w-screen h-full flex flex-row justify-start relative">
