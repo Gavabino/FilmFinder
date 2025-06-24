@@ -8,7 +8,6 @@ const Searchbar = ({ setSearchResults, setSearchData, setSearchKeywords }) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-
         const controller = new AbortController()
         console.log("Current search input:", search);
         const delayDebounce = setTimeout(() => {
