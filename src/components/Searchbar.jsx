@@ -8,11 +8,13 @@ const Searchbar = ({ setSearchResults, setSearchData, setSearchKeywords }) => {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+
+        const controller = new AbortController()
         console.log("Current search input:", search);
         const delayDebounce = setTimeout(() => {
             const fetchData = async () => {
                 setLoading(true);
-                const response = await handleSearch(search, year);
+                const response = await handleSearch(search, year, controller);
                 console.log(response)
                 if (response.length > 0) {
                     console.log("Searched")
@@ -24,7 +26,10 @@ const Searchbar = ({ setSearchResults, setSearchData, setSearchKeywords }) => {
             fetchData().then(() => setLoading(false))
         }, 500);
 
-        return () => clearTimeout(delayDebounce);
+        return () => {
+            clearTimeout(delayDebounce)
+            controller.abort()
+        };
     }, [search, year]);
 
     const handleChangeSearch = (e) => {

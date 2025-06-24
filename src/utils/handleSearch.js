@@ -1,6 +1,6 @@
 import axios from "../utils/axios.js";
 
-const handleSearch = async (search, year) => {
+const handleSearch = async (search, year, controller) => {
     if (!search) {
         console.log("No search")
         return [];
@@ -12,6 +12,7 @@ const handleSearch = async (search, year) => {
                 query: search,
                 language: "en-US",
             },
+            signal: controller.signal
         });
 
         console.log("Full API response:", response.data)
