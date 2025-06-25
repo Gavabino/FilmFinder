@@ -14,7 +14,8 @@ const Row = ({ title, endpoints }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const response = await fetchData(endpoints);
+            let response = await fetchData(endpoints);
+            response = response.filter((item) => item.original_language === "en")
             setData(response);
         }
         getData()
