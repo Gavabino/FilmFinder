@@ -20,9 +20,15 @@ const SearchPreview = ({item, handleClose}) => {
                 <FontAwesomeIcon icon={faX} className='text-white text-xl'/>
             </div>
             <div className="m-4 min-w-[25%] max-w-[35%] flex flex-col">
-                <p className="text-white text-4xl p-2 bg-gray-600 bg-opacity-25 rounded-t-md">{item.original_title ? item.original_title : item.original_name}</p>
-                <p className="text-white text-xl p-2 bg-gray-600 bg-opacity-25 rounded-b-md">{item.overview}</p>
-                <a href={link} target="_blank" rel="noopener noreferrer">Link</a>
+                <p className="text-white text-4xl p-2 bg-gray-600 bg-opacity-50 rounded-t-md">{item.original_title ? item.original_title : item.original_name}</p>
+                <p className="text-white text-xl p-2 bg-gray-600 bg-opacity-50">{item.overview}</p>
+                <div className="bg-gray-600 rounded-b-md bg-opacity-50 w-full flex">
+                    {link && <a href={link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-white text-xl bg-gray-600 p-1 pl-2 pr-2 m-2 rounded-xl hover:bg-gray-700"
+                    >IMDb Listing</a>}
+                </div>
             </div>
         </div>
     )
