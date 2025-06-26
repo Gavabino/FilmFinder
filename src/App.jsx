@@ -5,13 +5,13 @@ import SearchResultsContainer from "./components/SearchResultsContainer.jsx";
 
 function App() {
     const [searchResults, setSearchResults] = useState(false)
-    const [search, setSearch] = useState([])
+    const [searchData, setSearchData] = useState([])
     const [searchKeywords, setSearchKeywords] = useState("")
 
   return (
       <>
-          <Navbar setSearchResults={setSearchResults} setSearch={setSearch} setSearchKeywords={setSearchKeywords} />
-          {searchResults ? <SearchResultsContainer results={search} searchKeywords={searchKeywords}/> : <RowContainer />}
+          <Navbar setSearchResults={setSearchResults} setSearchData={setSearchData} setSearchKeywords={setSearchKeywords} />
+          {searchResults ? <SearchResultsContainer results={searchData} searchKeywords={searchKeywords}/> : <RowContainer />}
       </>
   )
 }

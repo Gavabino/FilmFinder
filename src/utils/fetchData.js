@@ -1,4 +1,5 @@
 import axios from "./axios.js";
+import {removeDuplicates, shuffleArray} from "./utilityFunctions.js";
 
 const fetchData = async (endpoints) => {
     let data = [];
@@ -17,26 +18,5 @@ const fetchData = async (endpoints) => {
     data = removeDuplicates(data)
     return data
 };
-
-const shuffleArray = (array) => {
-    for  (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-const removeDuplicates = (array) => {
-    const seen = new Set();
-
-    return array.filter((item) => {
-        if (!seen.has(item.id)) {
-            seen.add(item.id);
-            return true;
-        }
-        console.log("Item Removed")
-        return false;
-    })
-}
 
 export default fetchData;

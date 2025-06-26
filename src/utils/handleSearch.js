@@ -1,8 +1,8 @@
 import axios from "../utils/axios.js";
+import {removeDuplicates} from "./utilityFunctions.js";
 
 const handleSearch = async (search, year, controller) => {
     if (!search) {
-        console.log("No search")
         return [];
     }
 
@@ -15,11 +15,9 @@ const handleSearch = async (search, year, controller) => {
             signal: controller.signal
         });
 
-        console.log("Full API response:", response.data)
-
         let results = response.data.results || [];
 
-        for (let i = 1; i <= response.data.total_pages; i++) {
+        for (let i = 2; i <= response.data.total_pages; i++) {
             const response = await axios.get("/search/multi", {
                 params: {
                     query: search,
@@ -30,22 +28,13 @@ const handleSearch = async (search, year, controller) => {
             results = [...results, ...response.data.results];
         }
 
-        results = results.filter((item) => item.poster_path)
-        results = results.filter((item) => item.backdrop_path)
-        results = results.filter((item) => item.original_language === "en")
+        results = results.filter((item) =>
+            item.poster_path &&
+            item.backdrop_path &&
+            item.original_language === "en"
+        )
+
         results.sort((a, b) => b.popularity - a.popularity)
-
-        const removeDuplicates = (array) => {
-            const seen = new Set();
-
-            return array.filter((item) => {
-                if (!seen.has(item.id)) {
-                    seen.add(item.id);
-                    return true;
-                }
-                return false;
-            })
-        }
 
         if (year) {
             results = results.filter((item) => {
@@ -59,6 +48,7 @@ const handleSearch = async (search, year, controller) => {
         return results
     } catch (error) {
         console.error("Error fetching data:", error);
+        return [];
     }
 }
 
