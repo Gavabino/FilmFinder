@@ -1,13 +1,16 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 # FilmFinder
+
+**FilmFinder** is a tool for finding your next movie or TV show to watch. Weather it is just browsing or searching, **FilmFinder** will help you find your next watch in no time.  
+
+## Features
+- Ability to browse movies and TV shows
+- Search functionality with filtering by year
+- Access to the IMDb listing for every movie and TV show
+- Access to trailers using the **movie-trailers** package
+
+## Usage
+- Browse through several rows of movies and TV shows on the home screen
+    - When you find a movie or TV show that you like on it, click on it to view the description, trailer, and access the IMDb listing 
+- You can also search for any movie or TV show using the searchbar
+  - Optionally you can filter by year using the year input
+  - Once you are done with your search, just press clear to return to the homescreen
