@@ -1,6 +1,8 @@
 # FilmFinder
 
-**FilmFinder** is a tool for finding your next movie or TV show to watch. Weather it is just browsing or searching, **FilmFinder** will help you find your next watch in no time.  
+**FilmFinder** is a tool for finding your next movie or TV show to watch. Weather it is just browsing or searching, **FilmFinder** will help you find your next watch in no time.
+
+### https://Gavabino.github.io/FilmFinder
 
 ## Features
 - Ability to browse movies and TV shows
